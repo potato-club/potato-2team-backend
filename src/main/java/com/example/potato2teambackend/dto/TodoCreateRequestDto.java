@@ -16,7 +16,9 @@ public class TodoCreateRequestDto {
     }
 
     public Todo toEntity() {
-        return Todo.builder().todo(todo).build();
+        return Todo.builder()
+                .todo(todo)
+                .build();
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.potato2teambackend.dto.domain.member;
 
+import com.example.potato2teambackend.dto.domain.BaseTimeEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,8 +13,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor
-
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
