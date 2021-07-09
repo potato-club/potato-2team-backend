@@ -28,6 +28,7 @@ public class TodoServiceTest {
         // given
         TodoCreateRequestDto dto = TodoCreateRequestDto.builder()
                 .todo("글을 저장합니다.")
+                .memberId(1L)
                 .build();
 
         // when
