@@ -12,8 +12,8 @@ public class TodoService {
     private final TodoRepository todoRepository;
 
     @Transactional
-    public void save(TodoCreateRequestDto dto) {
-        todoRepository.save(dto.toEntity());
+    public Long save(TodoCreateRequestDto dto) {
+        return todoRepository.save(dto.toEntity()).getId();
     }
 
 }

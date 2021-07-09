@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
+
 @Configuration
 @RequiredArgsConstructor
 @RestController
@@ -16,10 +19,10 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @ApiOperation(value="TODO 등록하기")
+    @ApiOperation(value = "TODO 등록하기")
     @PostMapping("/api/v1/todo")
-    public void requestDto(@RequestBody TodoCreateRequestDto dto) {
-        todoService.save(dto);
+    public ApiResponse<Long> requestDto(@Valid @RequestBody TodoCreateRequestDto dto) {
+        return ApiResponse.success(todoService.save(dto));
     }
 
 }

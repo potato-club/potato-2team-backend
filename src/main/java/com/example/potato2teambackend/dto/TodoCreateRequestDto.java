@@ -5,10 +5,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+
 @Getter
 @NoArgsConstructor
 public class TodoCreateRequestDto {
+
+    @NotNull(message = "memberId를 입력해주세요.")
     private Long memberId;
+
+    @NotBlank(message = "TODO를 입력해주세요.")
     private String todo;
 
     @Builder

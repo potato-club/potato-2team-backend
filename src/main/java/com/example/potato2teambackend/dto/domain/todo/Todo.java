@@ -11,12 +11,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class Todo extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String todo;
 
+    @Column(nullable = false)
     private Long memberId;
 
     private boolean done;
@@ -24,7 +27,8 @@ public class Todo extends BaseTimeEntity {
     private boolean isDeleted;
 
     @Builder
-    public Todo(String todo, Long memberId) {
+    public Todo(Long id, String todo, Long memberId) {
+        this.id = id;
         this.todo = todo;
         this.memberId = memberId;
         this.done = false;
