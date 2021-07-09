@@ -17,12 +17,18 @@ public class Todo extends BaseTimeEntity {
 
     private String todo;
 
+    private int memberId;
+
     private boolean done;
 
+    private boolean isDeleted;
+
     @Builder
-    public Todo(String todo) {
+    public Todo(String todo, int memberId) {
         this.todo = todo;
+        this.memberId = memberId;
         this.done = false;
+        this.isDeleted = false;
     }
 
 }

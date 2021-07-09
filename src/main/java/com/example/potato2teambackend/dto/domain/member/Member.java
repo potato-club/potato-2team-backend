@@ -4,10 +4,7 @@ import com.example.potato2teambackend.dto.domain.BaseTimeEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -25,5 +22,7 @@ public class Member extends BaseTimeEntity {
     private String password;
 
     private LocalDate birth;
+
+    private boolean isDeleted;
 
 }
