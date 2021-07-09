@@ -1,8 +1,8 @@
 package com.example.potato2teambackend.service;
 
-import com.example.potato2teambackend.dto.TodoCreateRequestDto;
-import com.example.potato2teambackend.dto.domain.todo.Todo;
-import com.example.potato2teambackend.dto.domain.todo.TodoRepository;
+import com.example.potato2teambackend.dto.BoardCreateRequestDto;
+import com.example.potato2teambackend.dto.domain.todo.Board;
+import com.example.potato2teambackend.dto.domain.todo.BoardRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,31 +11,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class TodoServiceTest {
+public class BoardServiceTest {
     @Autowired
-    private TodoService todoService;
+    private BoardService boardService;
 
     @Autowired
-    private TodoRepository todoRepository;
+    private BoardRepository boardRepository;
 
     @AfterEach
     public void cleanUp() {
-        todoRepository.deleteAll();
+        boardRepository.deleteAll();
     }
 
     @Test
     void 글을_저장한다() {
         // given
-        TodoCreateRequestDto dto = TodoCreateRequestDto.builder()
+        BoardCreateRequestDto dto = BoardCreateRequestDto.builder()
                 .todo("글을 저장합니다.")
                 .memberId(1L)
                 .build();
 
         // when
-        todoService.save(dto);
+        boardService.save(dto);
 
         // then
-        Todo todo = todoRepository.findAll().get(0);
+        Board todo = boardRepository.findAll().get(0);
         assertThat(todo.getTodo()).isEqualTo(dto.getTodo());
     }
 

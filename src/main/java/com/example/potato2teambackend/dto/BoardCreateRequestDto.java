@@ -1,6 +1,6 @@
 package com.example.potato2teambackend.dto;
 
-import com.example.potato2teambackend.dto.domain.todo.Todo;
+import com.example.potato2teambackend.dto.domain.todo.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
-public class TodoCreateRequestDto {
+public class BoardCreateRequestDto {
 
     @NotNull(message = "memberId를 입력해주세요.")
     private Long memberId;
@@ -20,13 +20,13 @@ public class TodoCreateRequestDto {
     private String todo;
 
     @Builder
-    public TodoCreateRequestDto(String todo, Long memberId) {
+    public BoardCreateRequestDto(String todo, Long memberId) {
         this.todo = todo;
         this.memberId = memberId;
     }
 
-    public Todo toEntity() {
-        return Todo.builder()
+    public Board toEntity() {
+        return Board.builder()
                 .todo(todo)
                 .memberId(memberId)
                 .build();

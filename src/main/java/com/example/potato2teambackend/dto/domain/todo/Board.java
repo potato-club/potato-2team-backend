@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Todo extends BaseTimeEntity {
+public class Board extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Todo extends BaseTimeEntity {
     private boolean isDeleted;
 
     @Builder
-    public Todo(Long id, String todo, Long memberId) {
+    public Board(Long id, String todo, Long memberId) {
         this.id = id;
         this.todo = todo;
         this.memberId = memberId;
