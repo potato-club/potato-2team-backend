@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +22,7 @@ public class BoardCreateRequestDto {
     @NotBlank(message = "TODO를 입력해주세요.")
     private String todo;
 
+    @Enumerated(EnumType.STRING)
     private BoardColor color;
 
     @Builder
