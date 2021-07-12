@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static com.example.potato2teambackend.dto.domain.todo.BoardColor.BLUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -29,6 +30,7 @@ public class BoardServiceTest {
         BoardCreateRequestDto dto = BoardCreateRequestDto.builder()
                 .todo("글을 저장합니다.")
                 .memberId(1L)
+                .color(BLUE)
                 .build();
 
         // when
