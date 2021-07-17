@@ -3,7 +3,6 @@ package com.example.potato2teambackend.controller;
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
 import com.example.potato2teambackend.service.MemberService;
 import io.swagger.annotations.ApiOperation;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@Getter
 @RequiredArgsConstructor
 @RestController
 public class MemberController{
