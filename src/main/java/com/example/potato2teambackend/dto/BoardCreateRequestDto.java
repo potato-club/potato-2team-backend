@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
 @Getter
 @NoArgsConstructor
 public class BoardCreateRequestDto {
