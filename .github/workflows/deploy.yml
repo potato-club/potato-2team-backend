@@ -1,0 +1,37 @@
+name: Deploying Application Server
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout@v2
+        uses: actions/checkout@v2
+
+      - name: Packaging JAR file with Gradle Wrapper 🦦
+        run: ./gradlew clean build
+
+      - name: Change JAR Packaging Name 🐇
+        run: mv ./build/libs/*.jar ./build/libs/app.jar
+
+      - name: Upload JAR file 🦦
+        uses: actions/upload-artifact@v2
+        with:
+          name: app.jar
+          path: ./build/libs/app.jar
+  deploy:
+    needs:
+      - build
+    runs-on: potato-2team
+    steps:
+      - name: Download app.jar 🐇
+        uses: actions/download-artifact@v2
+        with:
+          name: app.jar
+
+      - name: Run sever with JAR file 🦦
+        run: |
+          mv app.jar ~/app.jar
+          RUNNER_TRACKING_ID="" && sh ~/scripts/deploy.sh &
