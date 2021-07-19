@@ -3,6 +3,7 @@ package com.example.potato2teambackend.service;
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
 import com.example.potato2teambackend.dto.BoardRetrieveAllResponseDto;
 import com.example.potato2teambackend.dto.domain.todo.BoardRepository;
+import com.example.potato2teambackend.dto.domain.todo.BoardStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +22,8 @@ public class BoardService {
     }
 
     @Transactional
-    public List<BoardRetrieveAllResponseDto> retrieveAllTodo() {
-        return boardRepository.findByIsDoneAndIsDeletedFalse(false).stream()
+    public List<BoardRetrieveAllResponseDto> retrieveAllTodo(BoardStatus status) {
+        return boardRepository.findByStatusAndIsDeletedFalse(status).stream()
                 .map(BoardRetrieveAllResponseDto::new)
                 .collect(Collectors.toList());
     }

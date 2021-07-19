@@ -2,6 +2,7 @@ package com.example.potato2teambackend.dto;
 
 import com.example.potato2teambackend.dto.domain.todo.Board;
 import com.example.potato2teambackend.dto.domain.todo.BoardColor;
+import com.example.potato2teambackend.dto.domain.todo.BoardStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class BoardRetrieveAllResponseDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime dateTime;
 
-    private boolean status;
+    private BoardStatus status;
 
     public BoardRetrieveAllResponseDto(Board todo) {
 
@@ -29,7 +30,7 @@ public class BoardRetrieveAllResponseDto {
         this.content = todo.getContent();
         this.color = todo.getColor();
         this.dateTime = todo.getCreatedDate();
-        this.status = todo.isDone();
+        this.status = todo.getStatus();
 
     }
 

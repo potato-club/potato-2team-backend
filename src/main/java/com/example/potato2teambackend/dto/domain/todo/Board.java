@@ -1,6 +1,7 @@
 package com.example.potato2teambackend.dto.domain.todo;
 
 import com.example.potato2teambackend.dto.domain.BaseTimeEntity;
+import com.sun.xml.bind.v2.TODO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,9 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false)
     private Long memberId;
 
-    private boolean isDone;
+    @Enumerated(EnumType.STRING)
+    @Column
+    private BoardStatus status;
 
     private boolean isDeleted;
 
@@ -34,7 +37,7 @@ public class Board extends BaseTimeEntity {
         this.id = id;
         this.content = content;
         this.memberId = memberId;
-        this.isDone = false;
+        this.status = BoardStatus.TODO;
         this.isDeleted = false;
         this.color = color;
     }
