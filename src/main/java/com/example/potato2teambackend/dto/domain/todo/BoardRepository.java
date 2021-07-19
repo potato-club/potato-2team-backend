@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    List<Board> findByStatusAndIsDeletedFalse(BoardStatus status);
+    List<Board> findByMemberIdAndStatusAndIsDeletedFalse(Long memberId, BoardStatus status);
 
 }

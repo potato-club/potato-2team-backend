@@ -27,8 +27,11 @@ public class BoardController {
     }
 
     @GetMapping("/api/v1/todo")
-    public ApiResponse<List<BoardRetrieveAllResponseDto>> retrieveAllTodo(@RequestParam BoardStatus status) {
-        return ApiResponse.success(boardService.retrieveAllTodo(status));
+    public ApiResponse<List<BoardRetrieveAllResponseDto>> retrieveAllTodo(
+            @RequestParam Long memberId,
+            @RequestParam BoardStatus status
+    ) {
+        return ApiResponse.success(boardService.retrieveAllTodo(memberId, status));
     }
 
 }

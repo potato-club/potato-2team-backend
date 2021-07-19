@@ -22,8 +22,8 @@ public class BoardService {
     }
 
     @Transactional
-    public List<BoardRetrieveAllResponseDto> retrieveAllTodo(BoardStatus status) {
-        return boardRepository.findByStatusAndIsDeletedFalse(status).stream()
+    public List<BoardRetrieveAllResponseDto> retrieveAllTodo(Long memberId, BoardStatus status) {
+        return boardRepository.findByMemberIdAndStatusAndIsDeletedFalse(memberId, status).stream()
                 .map(BoardRetrieveAllResponseDto::new)
                 .collect(Collectors.toList());
     }
