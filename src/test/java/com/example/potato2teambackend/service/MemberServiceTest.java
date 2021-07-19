@@ -1,8 +1,8 @@
 package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
-import com.example.potato2teambackend.dto.domain.member.Member;
-import com.example.potato2teambackend.dto.domain.member.MemberRepository;
+import com.example.potato2teambackend.domain.member.Member;
+import com.example.potato2teambackend.domain.member.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

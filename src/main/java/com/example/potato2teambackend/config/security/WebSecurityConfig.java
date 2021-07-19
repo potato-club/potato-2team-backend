@@ -1,4 +1,4 @@
-package com.example.potato2teambackend.dto.security;
+package com.example.potato2teambackend.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

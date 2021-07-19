@@ -1,6 +1,6 @@
-package com.example.potato2teambackend.dto.domain.member;
+package com.example.potato2teambackend.domain.member;
 
-import com.example.potato2teambackend.dto.domain.BaseTimeEntity;
+import com.example.potato2teambackend.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

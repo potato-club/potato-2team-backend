@@ -1,14 +1,14 @@
 package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
-import com.example.potato2teambackend.dto.domain.todo.Board;
-import com.example.potato2teambackend.dto.domain.todo.BoardRepository;
+import com.example.potato2teambackend.domain.todo.Board;
+import com.example.potato2teambackend.domain.todo.BoardRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.example.potato2teambackend.dto.domain.todo.BoardColor.BLUE;
+import static com.example.potato2teambackend.domain.todo.BoardColor.BLUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest

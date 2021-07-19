@@ -1,4 +1,4 @@
-package com.example.potato2teambackend.dto.domain.member;
+package com.example.potato2teambackend.domain.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

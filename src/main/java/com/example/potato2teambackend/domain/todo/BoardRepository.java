@@ -1,4 +1,4 @@
-package com.example.potato2teambackend.dto.domain.todo;
+package com.example.potato2teambackend.domain.todo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

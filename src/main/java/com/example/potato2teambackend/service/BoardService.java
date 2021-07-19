@@ -1,9 +1,9 @@
 package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
-import com.example.potato2teambackend.dto.BoardRetrieveAllResponseDto;
-import com.example.potato2teambackend.dto.domain.todo.BoardRepository;
-import com.example.potato2teambackend.dto.domain.todo.BoardStatus;
+import com.example.potato2teambackend.dto.BoardRetrieveResponseDto;
+import com.example.potato2teambackend.domain.todo.BoardRepository;
+import com.example.potato2teambackend.domain.todo.BoardStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,14 +17,14 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Long save(BoardCreateRequestDto dto) {
-        return boardRepository.save(dto.toEntity()).getId();
+    public BoardRetrieveResponseDto save(BoardCreateRequestDto dto) {
+        return new BoardRetrieveResponseDto(boardRepository.save(dto.toEntity()));
     }
 
-    @Transactional
-    public List<BoardRetrieveAllResponseDto> retrieveAllTodo(Long memberId, BoardStatus status) {
+    @Transactional(readOnly = true)
+    public List<BoardRetrieveResponseDto> retrieveAllTodo(Long memberId, BoardStatus status) {
         return boardRepository.findByMemberIdAndStatusAndIsDeletedFalse(memberId, status).stream()
-                .map(BoardRetrieveAllResponseDto::new)
+                .map(BoardRetrieveResponseDto::new)
                 .collect(Collectors.toList());
     }
 

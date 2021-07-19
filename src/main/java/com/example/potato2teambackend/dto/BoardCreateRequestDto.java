@@ -1,7 +1,7 @@
 package com.example.potato2teambackend.dto;
 
-import com.example.potato2teambackend.dto.domain.todo.Board;
-import com.example.potato2teambackend.dto.domain.todo.BoardColor;
+import com.example.potato2teambackend.domain.todo.Board;
+import com.example.potato2teambackend.domain.todo.BoardColor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

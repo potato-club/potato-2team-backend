@@ -1,7 +1,6 @@
-package com.example.potato2teambackend.dto.domain.todo;
+package com.example.potato2teambackend.domain.todo;
 
-import com.example.potato2teambackend.dto.domain.BaseTimeEntity;
-import com.sun.xml.bind.v2.TODO;
+import com.example.potato2teambackend.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

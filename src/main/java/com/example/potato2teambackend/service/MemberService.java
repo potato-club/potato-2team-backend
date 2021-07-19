@@ -1,7 +1,7 @@
 package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
-import com.example.potato2teambackend.dto.domain.member.MemberRepository;
+import com.example.potato2teambackend.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

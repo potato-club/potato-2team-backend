@@ -1,4 +1,4 @@
-package com.example.potato2teambackend.dto.domain;
+package com.example.potato2teambackend.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
