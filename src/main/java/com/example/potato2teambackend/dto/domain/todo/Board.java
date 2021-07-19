@@ -16,26 +16,25 @@ public class Board extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String todo;
+    private String content;
 
     @Column(nullable = false)
     private Long memberId;
 
-    private boolean done;
+    private boolean isDone;
 
     private boolean isDeleted;
 
     @Enumerated(EnumType.STRING)
-
-    @Column(length = 10)
+    @Column(length = 20)
     private BoardColor color;
 
     @Builder
-    public Board(Long id, String todo, Long memberId, BoardColor color) {
+    public Board(Long id, String content, Long memberId, BoardColor color) {
         this.id = id;
-        this.todo = todo;
+        this.content = content;
         this.memberId = memberId;
-        this.done = false;
+        this.isDone = false;
         this.isDeleted = false;
         this.color = color;
     }

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -25,7 +26,7 @@ public class MemberJoinRequestDto {
     @NotBlank(message = "패스워드를 입력해주세요.")
     private String password;
 
-    @NotBlank(message = "생년월일을 입력해주세요.")
+    @NotNull(message = "생년월일을 입력해주세요.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birth;
 

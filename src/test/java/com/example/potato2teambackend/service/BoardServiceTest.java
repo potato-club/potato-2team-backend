@@ -28,7 +28,7 @@ public class BoardServiceTest {
     void 글을_저장한다() {
         // given
         BoardCreateRequestDto dto = BoardCreateRequestDto.builder()
-                .todo("글을 저장합니다.")
+                .content("글을 저장합니다.")
                 .memberId(1L)
                 .color(BLUE)
                 .build();
@@ -38,7 +38,7 @@ public class BoardServiceTest {
 
         // then
         Board todo = boardRepository.findAll().get(0);
-        assertThat(todo.getTodo()).isEqualTo(dto.getTodo());
+        assertThat(todo.getContent()).isEqualTo(dto.getContent());
     }
 
 }
