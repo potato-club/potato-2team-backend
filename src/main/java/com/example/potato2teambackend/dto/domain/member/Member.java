@@ -31,8 +31,7 @@ public class Member extends BaseTimeEntity {
     private boolean isDeleted;
 
     @Builder
-    public Member(Long id, String email, String name, String password, LocalDate birth) {
-        this.id = id;
+    public Member(String email, String name, String password, LocalDate birth) {
         this.email = email;
         this.name = name;
         this.password = password;
