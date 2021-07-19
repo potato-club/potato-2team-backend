@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class Board extends BaseTimeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,6 +26,7 @@ public class Board extends BaseTimeEntity {
     private boolean isDeleted;
 
     @Enumerated(EnumType.STRING)
+
     @Column(length = 10)
     private BoardColor color;
 

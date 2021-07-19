@@ -13,10 +13,11 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
 
-    public Long joinMember(MemberJoinRequestDto dto){
+    public Long joinMember(MemberJoinRequestDto dto) {
+        if (memberRepository.findByEmail(dto.getEmail()) != null) {
+            throw new IllegalArgumentException("해당하는 이메일이 존재합니다!");
+        }
         return memberRepository.save(dto.toEntity(passwordEncoder)).getId();
     }
-
-    // TODO email 중복....
 
 }
