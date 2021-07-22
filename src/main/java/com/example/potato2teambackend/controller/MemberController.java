@@ -4,7 +4,6 @@ import com.example.potato2teambackend.dto.LoginRequestDto;
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
 import com.example.potato2teambackend.service.MemberService;
 import com.example.potato2teambackend.service.TokenService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +25,7 @@ public class MemberController{
         return ApiResponse.success(memberService.joinMember(dto));
     }
 
+    @ApiOperation(value = "로그인")
     @PostMapping("/api/v1/login")
     public ApiResponse<String> login(@Valid @RequestBody LoginRequestDto dto) {
         return ApiResponse.success(tokenService.createToken(memberService.loginMember(dto)));

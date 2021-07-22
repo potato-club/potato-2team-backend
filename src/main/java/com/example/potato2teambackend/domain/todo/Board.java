@@ -32,7 +32,7 @@ public class Board extends BaseTimeEntity {
     private BoardColor color;
 
     @Builder
-    public Board(Long id, String content, Long memberId, BoardColor color) {
+    public Board(Long id, String content, BoardColor color, Long memberId) {
         this.id = id;
         this.content = content;
         this.memberId = memberId;

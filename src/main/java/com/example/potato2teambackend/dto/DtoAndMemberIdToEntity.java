@@ -6,32 +6,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
-
 @Getter
 @NoArgsConstructor
-public class BoardCreateRequestDto {
-
-    @NotBlank(message = "TODO를 입력해주세요.")
+public class DtoAndMemberIdToEntity {
     private String content;
-
-    @Enumerated(EnumType.STRING)
     private BoardColor color;
+    private Long memberId;
 
     @Builder
-    public BoardCreateRequestDto(String content, BoardColor color) {
-        this.content = content;
-        this.color = color;
+    public DtoAndMemberIdToEntity(BoardCreateRequestDto dto, Long memberId) {
+
+        this.content = dto.getContent();
+        this.color = dto.getColor();
+        this.memberId = memberId;
+
     }
 
     public Board toEntity() {
         return Board.builder()
-                .content(content)
-                .color(color)
+                .content(getContent())
+                .color(getColor())
+                .memberId(memberId)
                 .build();
     }
-
 }
-

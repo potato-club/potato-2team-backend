@@ -29,7 +29,6 @@ public class BoardServiceTest {
         // given
         BoardCreateRequestDto dto = BoardCreateRequestDto.builder()
                 .content("글을 저장합니다.")
-                .memberId(1L)
                 .color(BLUE)
                 .build();
 
