@@ -21,7 +21,7 @@ public class BoardController {
     private final TokenService tokenService;
 
     @ApiOperation(value = "TODO 등록")
-    @PostMapping("/api/v1/todo/request")
+    @PostMapping("/api/v1/todo")
     public ApiResponse<Long> requestDto(@Valid @RequestBody BoardCreateRequestDto dto, @RequestHeader("Authorization") String token) {
         return ApiResponse.success(boardService.boardSave(dto, tokenService.decodeToken(token)));
     }
