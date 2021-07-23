@@ -17,8 +17,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public BoardRetrieveResponseDto save(BoardCreateRequestDto dto) {
-        return new BoardRetrieveResponseDto(boardRepository.save(dto.toEntity()));
+    public BoardRetrieveResponseDto save(BoardCreateRequestDto dto, Long memberId) {
+        return new BoardRetrieveResponseDto(boardRepository.save(dto.toEntity(memberId)));
     }
 
     @Transactional(readOnly = true)

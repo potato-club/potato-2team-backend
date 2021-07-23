@@ -9,14 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
 public class BoardCreateRequestDto {
-
-    @NotNull(message = "memberId를 입력해주세요.")
-    private Long memberId;
 
     @NotBlank(message = "TODO를 입력해주세요.")
     private String content;
@@ -24,19 +20,20 @@ public class BoardCreateRequestDto {
     @Enumerated(EnumType.STRING)
     private BoardColor color;
 
+
     @Builder
-    public BoardCreateRequestDto(String content, Long memberId, BoardColor color) {
+    public BoardCreateRequestDto(String content, BoardColor color) {
         this.content = content;
-        this.memberId = memberId;
         this.color = color;
     }
 
-    public Board toEntity() {
+    public Board toEntity(Long memberId) {
         return Board.builder()
                 .content(content)
-                .memberId(memberId)
                 .color(color)
+                .memberId(memberId)
                 .build();
     }
+
 }
 
