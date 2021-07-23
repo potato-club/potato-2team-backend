@@ -17,15 +17,15 @@ public class TokenService {
     @Value("${jwt.secret}")
     private String secret;
 
-    private Date EXPIRED_TIME = new Date(System.currentTimeMillis() + 60 * 60 * 24);
+    private static final long EXPIRED_TIME = 60 * 60 * 24;
 
     public String createToken(Long memberId) {
-        try {;
+        try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("yerimkoko")
                     .withClaim("memberId", memberId)
-                    .withExpiresAt(EXPIRED_TIME)
+                    .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRED_TIME))
                     .sign(algorithm);
         } catch (JWTCreationException exception) {
             throw new IllegalArgumentException("토큰 생성이 실패하였습니다.");

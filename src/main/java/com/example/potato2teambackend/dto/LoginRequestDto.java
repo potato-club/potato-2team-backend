@@ -1,6 +1,7 @@
 package com.example.potato2teambackend.dto;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,8 +13,10 @@ public class LoginRequestDto {
 
     private String password;
 
+    @Builder
     public LoginRequestDto(String email, String password) {
         this.email = email;
         this.password = password;
     }
+
 }

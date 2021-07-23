@@ -20,16 +20,18 @@ public class BoardCreateRequestDto {
     @Enumerated(EnumType.STRING)
     private BoardColor color;
 
+
     @Builder
     public BoardCreateRequestDto(String content, BoardColor color) {
         this.content = content;
         this.color = color;
     }
 
-    public Board toEntity() {
+    public Board toEntity(Long memberId) {
         return Board.builder()
                 .content(content)
                 .color(color)
+                .memberId(memberId)
                 .build();
     }
 
