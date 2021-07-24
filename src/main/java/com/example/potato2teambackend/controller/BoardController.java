@@ -3,7 +3,7 @@ package com.example.potato2teambackend.controller;
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
 import com.example.potato2teambackend.dto.BoardRetrieveResponseDto;
 import com.example.potato2teambackend.domain.todo.BoardStatus;
-import com.example.potato2teambackend.dto.BoardUpdateRequestDto;
+// import com.example.potato2teambackend.dto.BoardUpdateRequestDto;
 import com.example.potato2teambackend.service.BoardService;
 import com.example.potato2teambackend.service.TokenService;
 import io.swagger.annotations.ApiOperation;
@@ -36,10 +36,10 @@ public class BoardController {
         return ApiResponse.success(boardService.retrieveAllTodo(tokenService.decodeToken(token), status));
     }
 
-    @ApiOperation(value = "TODO 수정하기")
-    @PutMapping("/api/v1/todo/{id}")
-    public ApiResponse<BoardRetrieveResponseDto> request(@Valid @RequestBody BoardUpdateRequestDto dto, @RequestHeader("Authorization") String token, @PathVariable Long id) {
-        return ApiResponse.success(boardService.update(dto, id));
-    }
+//    @ApiOperation(value = "TODO 수정하기")
+//    @PutMapping("/api/v1/todo/{id}")
+//    public ApiResponse<BoardRetrieveResponseDto> request(@Valid @RequestBody BoardUpdateRequestDto dto, @RequestHeader("Authorization") String token, @PathVariable Long id) {
+//        return ApiResponse.success(boardService.update(dto, id));
+//    }
 
 }
