@@ -3,6 +3,7 @@ package com.example.potato2teambackend.service;
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
 import com.example.potato2teambackend.domain.member.Member;
 import com.example.potato2teambackend.domain.member.MemberRepository;
+import com.example.potato2teambackend.exception.ConflictException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,7 @@ public class MemberServiceTest {
                 .build();
 
         // when
-        assertThatThrownBy(() -> service.joinMember(requestDto)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> service.joinMember(requestDto)).isInstanceOf(ConflictException.class);
     }
 
 }
