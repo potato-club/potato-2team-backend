@@ -47,4 +47,8 @@ public class Board extends BaseTimeEntity {
         this.status = status;
     }
 
+    public void delete() {
+        this.isDeleted = true;
+    }
+
 }

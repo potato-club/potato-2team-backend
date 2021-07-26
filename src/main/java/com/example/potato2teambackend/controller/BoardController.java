@@ -43,4 +43,11 @@ public class BoardController {
         return ApiResponse.success(boardService.updateBoard(dto, memberId, id));
     }
 
+    @ApiOperation(value = "TODO 삭제하기")
+    @DeleteMapping("/api/v1/todo/{id}")
+    public ApiResponse<String> deleteTodo(@Valid @RequestHeader("Authorization") String token, @PathVariable Long id) {
+        boardService.deleteBoard(tokenService.decodeToken(token), id);
+        return ApiResponse.OK;
+    }
+
 }

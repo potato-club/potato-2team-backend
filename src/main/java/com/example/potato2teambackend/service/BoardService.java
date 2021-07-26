@@ -40,4 +40,13 @@ public class BoardService {
         return new BoardRetrieveResponseDto(findBoard);
     }
 
+    @Transactional
+    public void deleteBoard (Long memberId, Long id) {
+        Board board = boardRepository.findByMemberIdAndId(memberId, id);
+        if (board == null) {
+            throw new IllegalArgumentException("id를 정확하게 입력해주세요");
+        }
+        board.delete();
+    }
+
 }
