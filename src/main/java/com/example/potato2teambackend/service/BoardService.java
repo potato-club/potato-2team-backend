@@ -1,9 +1,11 @@
 package com.example.potato2teambackend.service;
 
+import com.example.potato2teambackend.domain.todo.Board;
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
 import com.example.potato2teambackend.dto.BoardRetrieveResponseDto;
 import com.example.potato2teambackend.domain.todo.BoardRepository;
 import com.example.potato2teambackend.domain.todo.BoardStatus;
+import com.example.potato2teambackend.dto.BoardUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,16 @@ public class BoardService {
         return boardRepository.findByMemberIdAndStatusAndIsDeletedFalse(memberId, status).stream()
                 .map(BoardRetrieveResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public BoardRetrieveResponseDto updateBoard(BoardUpdateRequestDto dto, Long id, Long memberId) {
+        Board findBoard = boardRepository.findByMemberIdAndId(memberId, id);
+        if (findBoard == null) {
+            throw new IllegalArgumentException();
+        }
+        findBoard.update(dto.getContent(), dto.getColor(), dto.getStatus());
+        return new BoardRetrieveResponseDto(findBoard);
     }
 
 }

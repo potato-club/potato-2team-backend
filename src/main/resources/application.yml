@@ -11,3 +11,8 @@ spring:
   profiles:
     include:
       - jwt
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true

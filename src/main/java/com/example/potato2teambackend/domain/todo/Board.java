@@ -41,4 +41,10 @@ public class Board extends BaseTimeEntity {
         this.color = color;
     }
 
+    public void update(String content, BoardColor color, BoardStatus status) {
+        this.content = content;
+        this.color = color;
+        this.status = status;
+    }
+
 }

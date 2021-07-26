@@ -8,4 +8,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     List<Board> findByMemberIdAndStatusAndIsDeletedFalse(Long memberId, BoardStatus status);
 
+    Board findByMemberIdAndId(Long memberId, Long id);
+
 }
