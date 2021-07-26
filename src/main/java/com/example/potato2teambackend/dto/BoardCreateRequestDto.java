@@ -20,7 +20,6 @@ public class BoardCreateRequestDto {
     @Enumerated(EnumType.STRING)
     private BoardColor color;
 
-
     @Builder
     public BoardCreateRequestDto(String content, BoardColor color) {
         this.content = content;

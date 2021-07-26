@@ -2,6 +2,7 @@ package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.domain.member.Member;
 import com.example.potato2teambackend.dto.LoginRequestDto;
+import com.example.potato2teambackend.dto.MemberInfoResponseDto;
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
 import com.example.potato2teambackend.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,16 @@ public class MemberService {
             throw new IllegalArgumentException("비밀번호를 확인해주세요.");
         }
         return member.getId();
+    }
+
+    @Transactional(readOnly = true)
+    public MemberInfoResponseDto responseDto(Long memberId) {
+        Member member = memberRepository.findByIdAndIsDeletedIsFalse(memberId);
+        if( member == null) {
+            throw new IllegalArgumentException("다시 로그인해주세요!");
+        }
+
+        return new MemberInfoResponseDto(member);
     }
 
 }
