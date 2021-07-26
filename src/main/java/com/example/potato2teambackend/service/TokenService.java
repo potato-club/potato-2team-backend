@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.potato2teambackend.exception.UnAuthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class TokenService {
             Long memberId = decodedJWT.getClaim("memberId").asLong();
             return memberId;
         } catch (JWTDecodeException exception) {
-            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+            throw new UnAuthorizedException("유효하지 않은 토큰입니다.");
         }
     }
 

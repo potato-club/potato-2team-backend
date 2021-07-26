@@ -19,4 +19,8 @@ public class ApiResponse<T> {
         return new ApiResponse<>("", "", data);
     }
 
+    public static ApiResponse<Object> error(String code, String message) {
+        return new ApiResponse<>(code, message, null);
+    }
+
 }

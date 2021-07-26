@@ -5,6 +5,8 @@ import com.example.potato2teambackend.dto.LoginRequestDto;
 import com.example.potato2teambackend.dto.MemberInfoResponseDto;
 import com.example.potato2teambackend.dto.MemberJoinRequestDto;
 import com.example.potato2teambackend.domain.member.MemberRepository;
+import com.example.potato2teambackend.exception.ConflictException;
+import com.example.potato2teambackend.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ public class MemberService {
     @Transactional
     public Long joinMember(MemberJoinRequestDto dto) {
         if (memberRepository.findByEmail(dto.getEmail()) != null) {
-            throw new IllegalArgumentException("해당하는 이메일이 존재합니다!");
+            throw new ConflictException("해당하는 이메일이 존재합니다!");
         }
         return memberRepository.save(dto.toEntity(passwordEncoder)).getId();
     }
@@ -29,11 +31,11 @@ public class MemberService {
     public Long loginMember(LoginRequestDto requestDto) {
         Member member = memberRepository.findByEmail(requestDto.getEmail());
         if (member == null) {
-            throw new IllegalArgumentException("일치하는 이메일이 없습니다.");
+            throw new NotFoundException("일치하는 이메일이 없습니다.");
         }
 
         if (!passwordEncoder.matches(requestDto.getPassword(), member.getPassword())) {
-            throw new IllegalArgumentException("비밀번호를 확인해주세요.");
+            throw new NotFoundException("비밀번호를 확인해주세요.");
         }
         return member.getId();
     }
@@ -42,9 +44,8 @@ public class MemberService {
     public MemberInfoResponseDto responseDto(Long memberId) {
         Member member = memberRepository.findByIdAndIsDeletedIsFalse(memberId);
         if( member == null) {
-            throw new IllegalArgumentException("다시 로그인해주세요!");
+            throw new NotFoundException("해당하는 유저는 존재하지 않아요 :( ");
         }
-
         return new MemberInfoResponseDto(member);
     }
 
