@@ -56,6 +56,7 @@ public class MemberServiceTest {
         String name = "고예림";
         String password = "12312312312";
         LocalDate birth = LocalDate.of(1997,02,17);
+
         repository.save(Member.builder()
                 .email(email)
                 .name(name)
