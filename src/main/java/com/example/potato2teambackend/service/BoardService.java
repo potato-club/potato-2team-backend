@@ -8,6 +8,9 @@ import com.example.potato2teambackend.domain.todo.BoardStatus;
 import com.example.potato2teambackend.dto.BoardUpdateRequestDto;
 import com.example.potato2teambackend.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,15 +27,16 @@ public class BoardService {
         return new BoardRetrieveResponseDto(boardRepository.save(dto.toEntity(memberId)));
     }
 
-    @Transactional(readOnly = true)
-    public List<BoardRetrieveResponseDto> retrieveAllTodo(Long memberId, BoardStatus status) {
+    @Transactional
+    public List<BoardRetrieveResponseDto> retrieveAllTodo(                                                         Long memberId, BoardStatus status) {
+        // Page<Board> boardList = boardRepository.findAll(pageRequest);
         return boardRepository.findByMemberIdAndStatusAndIsDeletedFalse(memberId, status).stream()
                 .map(BoardRetrieveResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public BoardRetrieveResponseDto updateBoard(BoardUpdateRequestDto dto, Long id, Long memberId) {
+    public BoardRetrieveResponseDto updateBoard(BoardUpdateRequestDto dto, Long memberId, Long id) {
         Board findBoard = boardRepository.findByMemberIdAndId(memberId, id);
         if (findBoard == null) {
             throw new NotFoundException("해당하는 todo가 존재하지 않습니다.");
