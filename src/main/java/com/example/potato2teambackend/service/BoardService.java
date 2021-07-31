@@ -1,16 +1,13 @@
 package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.domain.todo.Board;
-import com.example.potato2teambackend.dto.BoardCreateRequestDto;
-import com.example.potato2teambackend.dto.BoardRetrieveResponseDto;
+import com.example.potato2teambackend.dto.*;
 import com.example.potato2teambackend.domain.todo.BoardRepository;
 import com.example.potato2teambackend.domain.todo.BoardStatus;
-import com.example.potato2teambackend.dto.BoardUpdateRequestDto;
 import com.example.potato2teambackend.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,12 +24,23 @@ public class BoardService {
         return new BoardRetrieveResponseDto(boardRepository.save(dto.toEntity(memberId)));
     }
 
-    @Transactional
-    public List<BoardRetrieveResponseDto> retrieveAllTodo(                                                         Long memberId, BoardStatus status) {
-        // Page<Board> boardList = boardRepository.findAll(pageRequest);
+    @Transactional(readOnly = true) // TODO 조회하기
+    public List<BoardRetrieveResponseDto> retrieveAllTodo(Long memberId, BoardStatus status) {
         return boardRepository.findByMemberIdAndStatusAndIsDeletedFalse(memberId, status).stream()
                 .map(BoardRetrieveResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public BoardPageResponseDto pageRequest(int page, int size) {
+        Page<Board> boardList = boardRepository.findAll(PageRequest.of(page, size));
+        return BoardPageResponseDto.builder()
+                .contents(boardList.stream()
+                        .map(BoardDto::of)
+                        .collect(Collectors.toList()))
+                .totalPages(boardList.getTotalPages())
+                .totalElements(boardList.getTotalElements())
+                .build();
     }
 
     @Transactional
@@ -45,9 +53,11 @@ public class BoardService {
         return new BoardRetrieveResponseDto(findBoard);
     }
 
+
     @Transactional
     public void deleteBoard(Long memberId, Long id) {
         Board board = boardRepository.findByMemberIdAndId(memberId, id);
+
         if (board == null) {
             throw new NotFoundException(String.format("해당하는 투두(%s)가 존재하지 않습니다", id));
         }

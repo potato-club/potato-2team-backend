@@ -1,6 +1,7 @@
 package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.domain.member.Member;
+import com.example.potato2teambackend.domain.member.MemberRepository;
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
 import com.example.potato2teambackend.domain.todo.Board;
 import com.example.potato2teambackend.domain.todo.BoardRepository;
@@ -22,6 +23,9 @@ public class BoardServiceTest {
     @Autowired
     private BoardRepository boardRepository;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     @AfterEach
     public void cleanUp() {
         boardRepository.deleteAll();
@@ -30,29 +34,28 @@ public class BoardServiceTest {
     @Test
     void 글을_저장한다() {
         // given
-        Member.builder()
+        Member member = Member.builder()
                 .email("gochi97@naver.com")
                 .name("고예림")
                 .password("23234234")
                 .birth(LocalDate.of(1997,02,17))
                 .build();
 
+        memberRepository.save(member);
 
         BoardCreateRequestDto dto = BoardCreateRequestDto.builder()
                 .content("글을 저장합니다.")
                 .color(BLUE)
                 .build();
 
-        Long memberId = 1L;
-
         // when
-        boardService.save(dto, memberId);
+        boardService.save(dto, member.getId());
 
         // then
         Board todo = boardRepository.findAll().get(0);
         assertThat(todo.getContent()).isEqualTo(dto.getContent());
         assertThat(todo.getColor()).isEqualTo(dto.getColor());
-        assertThat(todo.getMemberId()).isEqualTo(memberId);
+        assertThat(todo.getMemberId()).isEqualTo(member.getId());
 
     }
 
