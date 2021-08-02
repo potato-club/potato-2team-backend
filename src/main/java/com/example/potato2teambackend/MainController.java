@@ -12,7 +12,7 @@ public class MainController {
         return "pong";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
         return "index.html";
     }

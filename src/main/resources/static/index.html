@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>✉️ 민정이초대장 ✉️</title>
+    <script type = "text/javascript" src="./date.js">
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Yeon+Sung&display=swap');
         .namu-font{
@@ -17,19 +19,33 @@
         #textbox {
             text-align: center;
         }
+        #countdown,
+
+        #HourCountdown,
+
+        #countExpire {
+
+            display: inline;
+
+            color: blue;
+
+            font-weight: bold;
+
+        }
 
     </style>
 </head>
 <body>
 <p class = "flex">
-    <video width="380" controls autoplay loop muted>
+    <video width="300" controls autoplay loop muted>
         <source src = "IMG_4031.mp4" type="video/mp4"><br>
     </video><br>
     <p class="namu-font">
         <div id = "textbox">
         ✉️ <U><i><B>초 대 장 </B></i></U> ✉️
          <marquee behavior="alternate" scrollamount="15">   🎂🍰️🍗🍖🍔🌭🍟🍕🥪🥙🌮🧆🌯🍜 <br><br></marquee>
-
+        <script>CountDownTimer('08/10/2021', 'countdown')</script>
+        <div id="countdown"></div><br>
         ✨Happy Birthday 민정 !!!!<br>
 
         ✨일시: 2021.08.10 (Tue) 13:00<br>
