@@ -28,6 +28,8 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDate birth;
 
+    private MemberStatus memberStatus;
+
     private boolean isDeleted;
 
     @Builder
@@ -36,7 +38,7 @@ public class Member extends BaseTimeEntity {
         this.name = name;
         this.password = password;
         this.birth = birth;
-        this.isDeleted = false;
+        this.memberStatus = MemberStatus.ACTIVE;
     }
 
 }

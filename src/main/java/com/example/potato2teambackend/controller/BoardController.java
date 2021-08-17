@@ -6,8 +6,9 @@ import com.example.potato2teambackend.service.BoardService;
 import com.example.potato2teambackend.service.TokenService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,13 +21,12 @@ public class BoardController {
 
     private final TokenService tokenService;
 
-    // private final BoardRepository boardRepository;
-
     private static final int PAGE_NUM = 5;
 
     @ApiOperation(value = "TODO 등록")
     @PostMapping("/api/v1/todo")
-    public ApiResponse<BoardRetrieveResponseDto> requestDto(@Valid @RequestBody BoardCreateRequestDto dto, @RequestHeader("Authorization") String token) {
+    public ApiResponse<BoardRetrieveResponseDto> requestDto(@Valid @RequestBody BoardCreateRequestDto dto,
+                                                            @RequestHeader("Authorization") String token) {
         return ApiResponse.success(boardService.save(dto, tokenService.decodeToken(token)));
     }
 
@@ -51,7 +51,9 @@ public class BoardController {
 
     @ApiOperation(value = "TODO 수정하기")
     @PutMapping("/api/v1/todo/{id}")
-    public ApiResponse<BoardRetrieveResponseDto> requestUpdate(@Valid @RequestBody BoardUpdateRequestDto dto, @RequestHeader("Authorization") String token, @PathVariable Long id) {
+    public ApiResponse<BoardRetrieveResponseDto> requestUpdate(@Valid @RequestBody BoardUpdateRequestDto dto,
+                                                               @RequestHeader("Authorization") String token,
+                                                               @PathVariable Long id) {
         Long memberId = tokenService.decodeToken(token);
         return ApiResponse.success(boardService.updateBoard(dto, memberId, id));
     }
@@ -61,6 +63,16 @@ public class BoardController {
     public ApiResponse<String> deleteTodo(@Valid @RequestHeader("Authorization") String token, @PathVariable Long id) {
         boardService.deleteBoard(tokenService.decodeToken(token), id);
         return ApiResponse.OK;
+    }
+
+    @ApiOperation(value = "TODO 하나씩 조회하기")
+    @GetMapping("/api/v1/todo/{id}")
+    public ApiResponse<BoardRetrieveResponseDto> retrieveTodo(@Valid @RequestHeader("Authorization") String token,
+                                                             @PathVariable Long id,
+                                                             @RequestParam BoardStatus status) {
+        Long memberId = tokenService.decodeToken(token);
+        return ApiResponse.success(boardService.retrieveTodo(memberId, id, status));
+
     }
 
 }

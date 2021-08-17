@@ -2,6 +2,8 @@ package com.example.potato2teambackend.service;
 
 import com.example.potato2teambackend.domain.member.Member;
 import com.example.potato2teambackend.domain.member.MemberRepository;
+import com.example.potato2teambackend.domain.todo.BoardColor;
+import com.example.potato2teambackend.domain.todo.BoardStatus;
 import com.example.potato2teambackend.dto.BoardCreateRequestDto;
 import com.example.potato2teambackend.domain.todo.Board;
 import com.example.potato2teambackend.domain.todo.BoardRepository;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.awt.*;
 import java.time.LocalDate;
 
 import static com.example.potato2teambackend.domain.todo.BoardColor.BLUE;
@@ -57,6 +60,28 @@ public class BoardServiceTest {
         assertThat(todo.getColor()).isEqualTo(dto.getColor());
         assertThat(todo.getMemberId()).isEqualTo(member.getId());
 
+    }
+
+    @Test
+    void memberId와_boardId와_상태값으로_글을불러온다() {
+        // given
+        String content = "글을 저장해요";
+        BoardColor color = BLUE;
+        Long memberId = 1L;
+
+        Board board = boardRepository.save(Board.builder()
+                .content(content)
+                .memberId(memberId)
+                .color(color)
+                .build());
+
+        // when
+        boardRepository.findByMemberIdAndIdAndStatusAndIsDeletedFalse(memberId, board.getId(), BoardStatus.TODO);
+
+        // then
+        assertThat(board.getMemberId()).isEqualTo(1L);
+        assertThat(board.getId()).isEqualTo(1L);
+        assertThat(board.getStatus()).isEqualTo(BoardStatus.TODO);
     }
 
 }

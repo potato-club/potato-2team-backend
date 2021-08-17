@@ -10,6 +10,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     List<Board> findByMemberIdAndStatusAndIsDeletedFalse(Long memberId, BoardStatus status);
 
+    Board findByMemberIdAndIdAndStatusAndIsDeletedFalse(Long memberId, Long id, BoardStatus status);
+
     Board findByMemberIdAndId(Long memberId, Long id);
 
     Page<Board> findAll(Pageable pageable);
